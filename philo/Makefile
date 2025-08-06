@@ -12,6 +12,7 @@ VALIDATION_SRC		=	$(VALIDATION_SRC_DIR)/validation.c \
 ACTIONS_SRC			= $(ACTIONS_DIR)/philo_action.c
 
 PHILO_SRC			=	main.c \
+						init.c \
 						$(VALIDATION_SRC) \
 						$(ACTIONS_SRC) #\
 						$(STACK_SRC) \
