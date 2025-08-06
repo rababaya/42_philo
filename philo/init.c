@@ -6,13 +6,13 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 14:48:22 by rababaya          #+#    #+#             */
-/*   Updated: 2025/08/06 16:34:05 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/08/06 17:10:07 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	helper(t_table **table, t_philo **philo_data)
+static void	helper(t_table **table, t_philo **philo_data)
 {
 	int	i;
 

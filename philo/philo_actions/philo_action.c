@@ -6,7 +6,7 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 14:06:04 by rababaya          #+#    #+#             */
-/*   Updated: 2025/08/06 16:18:22 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/08/06 16:53:12 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	*philo(void *data)
 	philo = data;
 	while (1)
 	{
+		if (philo->id % 2 == 1)
+			usleep(400);
 		pthread_mutex_lock(philo->left);
 		printf("%d left fork taken\n", philo->id);
 		pthread_mutex_lock(philo->right);

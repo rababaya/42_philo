@@ -6,7 +6,7 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 15:31:15 by rababaya          #+#    #+#             */
-/*   Updated: 2025/08/06 16:19:13 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/08/06 17:10:47 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <pthread.h>
+# include <sys/time.h>
 
 typedef pthread_mutex_t	t_mutex;
 
