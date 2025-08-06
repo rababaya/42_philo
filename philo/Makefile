@@ -4,13 +4,16 @@ RM					=	rm -f
 NAME				=	philo
 
 VALIDATION_SRC_DIR	=	validation
+ACTIONS_DIR			=	philo_actions
 
 VALIDATION_SRC		=	$(VALIDATION_SRC_DIR)/validation.c \
 						$(VALIDATION_SRC_DIR)/ft_atoi.c
- 
+
+ACTIONS_SRC			= $(ACTIONS_DIR)/philo_action.c
+
 PHILO_SRC			=	main.c \
-						$(VALIDATION_SRC)
-						#$(LIST_SRC) \
+						$(VALIDATION_SRC) \
+						$(ACTIONS_SRC) #\
 						$(STACK_SRC) \
 						$(PS_SRC) \
 						$(BASIC_SORT_SRC) \
