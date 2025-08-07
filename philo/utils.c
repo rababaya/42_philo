@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/05 15:07:08 by rababaya          #+#    #+#             */
-/*   Updated: 2025/08/07 15:23:52 by rababaya         ###   ########.fr       */
+/*   Created: 2025/08/07 15:21:02 by rababaya          #+#    #+#             */
+/*   Updated: 2025/08/07 15:52:21 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+long long	get_time_in_ms(void)
 {
-	t_table	table;
+	struct timeval	time;
 
-	table.start_time = get_time_in_ms();
-	if (argc != 5 && argc != 6)
-		return (printf("wrong argument number\n"), 1);
-	if (!validation(argc, argv, &table))
-		return (1);
-	init(&table);
-	return (0);
+	gettimeofday(&time, NULL);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+}
+
+void	print(t_philo *philo, char *text, long long start)
+{
+	long long	current;
+
+	current = get_time_in_ms();
+	printf("%lld %d %s\n", current - start, philo->id, text);
 }

@@ -6,7 +6,7 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 14:48:22 by rababaya          #+#    #+#             */
-/*   Updated: 2025/08/06 17:10:07 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/08/07 15:03:51 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static void	helper(t_table **table, t_philo **philo_data)
 		//(*philo_data)[i].count_of_eat = i;
 		(*philo_data)[i].left = (*table)->forks[i];
 		(*philo_data)[i].right = (*table)->forks[(i + 1) % (*table)->n];
+		(*philo_data)[i].start_time = (*table)->start_time;
 		i++;
 	}
 }
