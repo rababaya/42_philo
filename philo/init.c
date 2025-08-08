@@ -6,7 +6,7 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 14:48:22 by rababaya          #+#    #+#             */
-/*   Updated: 2025/08/07 18:43:18 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/08/08 16:40:58 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,12 @@ static void	helper(t_table **table, t_philo **philo_data)
 		(*philo_data)[i].left = (*table)->forks[i];
 		(*philo_data)[i].right = (*table)->forks[(i + 1) % (*table)->n];
 		(*philo_data)[i].start_time = (*table)->start_time;
+		(*philo_data)[i].last_eat_time = (*table)->start_time;
 		(*philo_data)[i].table = (*table);
+		(*philo_data)[i].last_eat = (t_mutex *)malloc(sizeof(t_mutex));
+		if (!(*philo_data)[i].last_eat)
+			return ;
+		pthread_mutex_init((*philo_data)[i].last_eat, NULL);
 		i++;
 	}
 }
@@ -45,6 +50,14 @@ void	init(t_table *table)
 	int		i;
 	t_philo	*philo_data;
 
+	table->print = (t_mutex *)malloc(sizeof(t_mutex ));
+	if (!table->print)
+		return ;
+	pthread_mutex_init(table->print, NULL);
+	table->dead = (t_mutex *)malloc(sizeof(t_mutex ));
+	if (!table->dead)
+		return ;
+	pthread_mutex_init(table->dead, NULL);
 	table->forks = (t_mutex **)malloc(table->n * sizeof(t_mutex *));
 	if (!table->forks)
 		return ;
@@ -61,5 +74,8 @@ void	init(t_table *table)
 	while (i < table->n)
 		pthread_join(philo_data[i++].thread, NULL);
 	pthread_join(table->dead_check, NULL);
+	free(philo_data);
+	free(table->print);
+	free(table->dead);
 	return ;
 }

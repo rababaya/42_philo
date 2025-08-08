@@ -6,7 +6,7 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 15:30:25 by rababaya          #+#    #+#             */
-/*   Updated: 2025/08/07 18:43:05 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/08/08 15:18:24 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	validation(int argcount, char **argvector, t_table *table)
 			return (printf("Outside of int borders\n"), 0);
 	}
 	table->n = ft_atoi(argvector[1]);
-	table->time_to_die = ft_atoi(argvector[2]) * 1000;
+	table->time_to_die = ft_atoi(argvector[2]);
 	table->time_to_eat = ft_atoi(argvector[3]) * 1000;
 	table->time_to_sleep = ft_atoi(argvector[4]) * 1000;
 	table->smbd_died = 0;
