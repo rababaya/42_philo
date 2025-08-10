@@ -6,7 +6,7 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 15:31:15 by rababaya          #+#    #+#             */
-/*   Updated: 2025/08/08 15:57:07 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/08/10 15:29:21 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <sys/time.h>
 
 typedef pthread_mutex_t	t_mutex;
-typedef struct s_table t_table;
+typedef struct s_table	t_table;
 
 typedef struct s_philo
 {
@@ -28,7 +28,7 @@ typedef struct s_philo
 	long long	start_time;
 	t_mutex		*left;
 	t_mutex		*right;
-	t_mutex		*last_eat;
+	t_mutex		last_eat;
 	pthread_t	thread;
 	int			id;
 	long		time_to_die;
@@ -46,9 +46,9 @@ typedef struct s_table
 	long		time_to_eat;
 	long		time_to_sleep;
 	int			n;
-	t_mutex		*print;
-	t_mutex		*dead;
-	t_mutex		**forks;
+	t_mutex		print;
+	t_mutex		dead;
+	t_mutex		*forks;
 	pthread_t	dead_check;
 	t_philo		*philos;
 }	t_table;
