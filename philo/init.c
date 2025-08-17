@@ -6,7 +6,7 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 14:48:22 by rababaya          #+#    #+#             */
-/*   Updated: 2025/08/10 16:07:15 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/08/17 14:55:19 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static void	helper(t_table **table, t_philo **philo_data, int i)
 		(*philo_data)[i].id = i + 1;
 		(*philo_data)[i].time_to_eat = (*table)->time_to_eat;
 		(*philo_data)[i].time_to_sleep = (*table)->time_to_sleep;
-		//(*philo_data)[i].count_of_eat = i;
+		if ((*table)->eat_count)
+			(*philo_data)[i].count_of_eat = (*table)->eat_count;
 		(*philo_data)[i].left = &((*table)->forks[i]);
 		(*philo_data)[i].right = &((*table)->forks[(i + 1) % (*table)->n]);
 		(*philo_data)[i].start_time = (*table)->start_time;

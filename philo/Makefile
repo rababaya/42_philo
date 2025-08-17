@@ -1,5 +1,5 @@
 CC					=	cc
-CFLAGS				=	-Wall -Wextra -Werror -I includes -g3 #-fsanitize=thread
+CFLAGS				=	-Wall -Wextra -Werror -I includes -g3 -fsanitize=thread -pthread
 RM					=	rm -f
 NAME				=	philo
 
@@ -8,7 +8,7 @@ VALIDATION_SRC_DIR	=	validation
 VALIDATION_SRC		=	$(VALIDATION_SRC_DIR)/validation.c \
 						$(VALIDATION_SRC_DIR)/ft_atoi.c
 
-PHILO_SRC			=	main.c \
+PHILO_SRC			=	philo.c \
 						init.c \
 						philo_actions.c \
 						utils.c \

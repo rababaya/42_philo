@@ -6,7 +6,7 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 15:31:15 by rababaya          #+#    #+#             */
-/*   Updated: 2025/08/10 15:29:21 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/08/17 14:50:54 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,28 +24,29 @@ typedef struct s_table	t_table;
 
 typedef struct s_philo
 {
+	int			id;
+	int			count_of_eat; //tmp
+	long		time_to_die;
+	long		time_to_eat;
+	long		time_to_sleep;
 	long long	last_eat_time;
 	long long	start_time;
 	t_mutex		*left;
 	t_mutex		*right;
 	t_mutex		last_eat;
 	pthread_t	thread;
-	int			id;
-	long		time_to_die;
-	long		time_to_eat;
-	long		time_to_sleep;
-	int			count_of_eat; //tmp
 	t_table		*table;
 }	t_philo;
 
 typedef struct s_table
 {
 	int			smbd_died;
-	long long	start_time;
+	int			n;
+	int			eat_count;
 	long		time_to_die;
 	long		time_to_eat;
 	long		time_to_sleep;
-	int			n;
+	long long	start_time;
 	t_mutex		print;
 	t_mutex		dead;
 	t_mutex		*forks;
