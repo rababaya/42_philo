@@ -6,7 +6,7 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 14:06:04 by rababaya          #+#    #+#             */
-/*   Updated: 2025/08/18 17:17:06 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/08/19 18:50:17 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@ void	*is_dead(void *data)
 	table = data;
 	while (1)
 	{
+		if (table->eat_count && check_count(table))
+		{
+			pthread_mutex_lock(&(table->dead));
+			table->smbd_died = 1;
+			pthread_mutex_unlock(&(table->dead));
+			return (pthread_mutex_unlock(&(table->print)), NULL);
+		}
 		i = -1;
 		while (++i < table->n)
 		{
@@ -37,42 +44,32 @@ void	*is_dead(void *data)
 			}
 			pthread_mutex_unlock(&(table->philos[i].last_eat));
 		}
-		usleep(1000);
 	}
 	return (NULL);
 }
 
-void	check_count(t_table *table)
+int	check_count(t_table *table)
 {
 	int	i;
 	int	all;
-	int	*all_eaten;
 
-	all_eaten = malloc(sizeof(int) * table->n);
 	all = 0;
 	i = -1;
 	while (++i < table->n)
-		all_eaten[i] = -1;
-	while (all < table->n)
 	{
-		i = -1;
-		while (++i < table->n)
-		{
-			pthread_mutex_lock(&(table->philos[i].count));
-			if (table->philos[i].count_now == table->eat_count)
-				if (all_eaten[i] != i)
-				{
-					all_eaten[i] = i;
-					all++;
-				}
-			pthread_mutex_unlock(&(table->philos[i].count));
-		}
-		usleep(1000);
+		pthread_mutex_lock(&(table->philos[i].count));
+		if (table->philos[i].count_now >= table->eat_count)
+			all++;
+		pthread_mutex_unlock(&(table->philos[i].count));
 	}
-	pthread_mutex_lock(&(table->dead));
-	table->smbd_died = 1;
-	pthread_mutex_unlock(&(table->dead));
-	free(all_eaten);
+	if (all == table->n)
+	{
+		pthread_mutex_lock(&(table->print));
+		printf("Everyone ate required times!\n");
+		return (1);
+	}
+	else
+		return (0);
 }
 
 static int	philo_odd(t_philo *philo)
@@ -93,10 +90,7 @@ static int	philo_odd(t_philo *philo)
 	usleep(philo->time_to_eat);
 	pthread_mutex_lock(&(philo->count));
 	if (philo->count_of_eat != 0)
-		if (++philo->count_now >= philo->count_of_eat)
-			return (pthread_mutex_unlock(&(philo->count)),
-				pthread_mutex_unlock(philo->left),
-				pthread_mutex_unlock(philo->right), 0);
+		philo->count_now++;
 	pthread_mutex_unlock(&(philo->count));
 	pthread_mutex_unlock(philo->left);
 	pthread_mutex_unlock(philo->right);
@@ -121,10 +115,7 @@ static int	philo_even(t_philo *philo)
 	usleep(philo->time_to_eat);
 	pthread_mutex_lock(&(philo->count));
 	if (philo->count_of_eat != 0)
-		if (++philo->count_now >= philo->count_of_eat)
-			return (pthread_mutex_unlock(&(philo->count)),
-				pthread_mutex_unlock(philo->left),
-				pthread_mutex_unlock(philo->right), 0);
+		philo->count_now++;
 	pthread_mutex_unlock(&(philo->count));
 	pthread_mutex_unlock(philo->right);
 	pthread_mutex_unlock(philo->left);

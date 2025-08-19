@@ -6,7 +6,7 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 15:31:15 by rababaya          #+#    #+#             */
-/*   Updated: 2025/08/18 17:15:47 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/08/19 16:20:35 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,6 @@ void		init(t_table *table);
 long long	get_time_in_ms(void);
 int			print(t_philo *philo, char *text, long long start);
 void		*is_dead(void *data);
-void		check_count(t_table *table);
+int			check_count(t_table *table);
 
 #endif

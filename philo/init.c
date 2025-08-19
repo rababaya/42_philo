@@ -6,7 +6,7 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 14:48:22 by rababaya          #+#    #+#             */
-/*   Updated: 2025/08/18 17:15:55 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/08/19 18:40:02 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,5 @@ void	init(t_table *table)
 	while (++i < table->n)
 		pthread_create(&philo_data[i].thread, NULL, philo, &philo_data[i]);
 	pthread_create(&(table->dead_check), NULL, is_dead, table);
-	if (table->eat_count)
-		check_count(table);
 	return ;
 }
