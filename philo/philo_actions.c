@@ -6,7 +6,7 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 14:06:04 by rababaya          #+#    #+#             */
-/*   Updated: 2025/08/19 18:50:17 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/08/19 19:11:42 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ static int	philo_odd(t_philo *philo)
 {
 	pthread_mutex_lock(philo->left);
 	if (!print(philo, "has taken a fork", philo->start_time))
+		return (pthread_mutex_unlock(philo->left), 0);
+	if (philo->table->n == 1)
 		return (pthread_mutex_unlock(philo->left), 0);
 	pthread_mutex_lock(philo->right);
 	if (!print(philo, "has taken a fork", philo->start_time))

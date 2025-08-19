@@ -6,7 +6,7 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 14:48:22 by rababaya          #+#    #+#             */
-/*   Updated: 2025/08/19 18:40:02 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/08/19 19:09:21 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	init(t_table *table)
 	table->forks = (t_mutex *)malloc(table->n * sizeof(t_mutex));
 	if (!table->forks)
 		return ;
+	i = -1;
 	philo_data = (t_philo *)malloc(table->n * sizeof(t_philo));
 	if (!philo_data)
 		return ;
