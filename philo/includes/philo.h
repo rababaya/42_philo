@@ -6,7 +6,7 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 15:31:15 by rababaya          #+#    #+#             */
-/*   Updated: 2025/08/19 16:20:35 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/08/20 17:23:22 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ typedef struct s_table
 
 int			ft_atoi(const char *str);
 int			validation(int argcount, char **argvector, t_table *table);
-void		*philo(void *data);
 void		init(t_table *table);
-long long	get_time_in_ms(void);
-int			print(t_philo *philo, char *text, long long start);
+void		*philo(void *data);
 void		*is_dead(void *data);
-int			check_count(t_table *table);
+int			print(t_philo *philo, char *text, long long start);
+long long	get_time_in_ms(void);
+void		ft_usleep(long long time, t_philo *philo);
 
 #endif

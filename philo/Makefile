@@ -1,5 +1,5 @@
 CC					=	cc
-CFLAGS				=	-Wall -Wextra -Werror -I includes -g3 #-fsanitize=thread
+CFLAGS				=	-Wall -Wextra -Werror -I includes -g3 -fsanitize=thread
 RM					=	rm -f
 NAME				=	philo
 
@@ -12,10 +12,8 @@ PHILO_SRC			=	philo.c \
 						init.c \
 						philo_actions.c \
 						utils.c \
-						$(VALIDATION_SRC) #\
-						$(STACK_SRC) \
-						$(PS_SRC) \
-						$(BASIC_SORT_SRC) \
+						dead.c \
+						$(VALIDATION_SRC)
  
 PHILO_OBJ			=	$(PHILO_SRC:%.c=obj/philo/%.o)
 

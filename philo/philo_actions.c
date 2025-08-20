@@ -6,71 +6,11 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 14:06:04 by rababaya          #+#    #+#             */
-/*   Updated: 2025/08/19 19:11:42 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/08/20 17:21:49 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void	*is_dead(void *data)
-{
-	int			i;
-	t_table		*table;
-	long long	current;
-
-	table = data;
-	while (1)
-	{
-		if (table->eat_count && check_count(table))
-		{
-			pthread_mutex_lock(&(table->dead));
-			table->smbd_died = 1;
-			pthread_mutex_unlock(&(table->dead));
-			return (pthread_mutex_unlock(&(table->print)), NULL);
-		}
-		i = -1;
-		while (++i < table->n)
-		{
-			current = get_time_in_ms();
-			pthread_mutex_lock(&(table->philos[i].last_eat));
-			if (current - table->philos[i].last_eat_time >= table->time_to_die)
-			{
-				print(&(table->philos[i]), "is died", table->start_time);
-				pthread_mutex_lock(&(table->dead));
-				table->smbd_died = 1;
-				pthread_mutex_unlock(&(table->dead));
-				pthread_mutex_unlock(&(table->philos[i].last_eat));
-				return (NULL);
-			}
-			pthread_mutex_unlock(&(table->philos[i].last_eat));
-		}
-	}
-	return (NULL);
-}
-
-int	check_count(t_table *table)
-{
-	int	i;
-	int	all;
-
-	all = 0;
-	i = -1;
-	while (++i < table->n)
-	{
-		pthread_mutex_lock(&(table->philos[i].count));
-		if (table->philos[i].count_now >= table->eat_count)
-			all++;
-		pthread_mutex_unlock(&(table->philos[i].count));
-	}
-	if (all == table->n)
-	{
-		pthread_mutex_lock(&(table->print));
-		printf("Everyone ate required times!\n");
-		return (1);
-	}
-	else
-		return (0);
-}
 
 static int	philo_odd(t_philo *philo)
 {
@@ -89,7 +29,7 @@ static int	philo_odd(t_philo *philo)
 	pthread_mutex_lock(&(philo->last_eat));
 	philo->last_eat_time = get_time_in_ms();
 	pthread_mutex_unlock(&(philo->last_eat));
-	usleep(philo->time_to_eat);
+	ft_usleep(philo->time_to_eat, philo);
 	pthread_mutex_lock(&(philo->count));
 	if (philo->count_of_eat != 0)
 		philo->count_now++;
@@ -114,7 +54,7 @@ static int	philo_even(t_philo *philo)
 	pthread_mutex_lock(&(philo->last_eat));
 	philo->last_eat_time = get_time_in_ms();
 	pthread_mutex_unlock(&(philo->last_eat));
-	usleep(philo->time_to_eat);
+	ft_usleep(philo->time_to_eat, philo);
 	pthread_mutex_lock(&(philo->count));
 	if (philo->count_of_eat != 0)
 		philo->count_now++;
@@ -143,7 +83,7 @@ void	*philo(void *data)
 				return (NULL);
 		if (!print(philo, "is sleeping", philo->start_time))
 			return (NULL);
-		usleep(philo->time_to_sleep);
+		ft_usleep(philo->time_to_sleep, philo);
 		if (!print(philo, "is thinking", philo->start_time))
 			return (NULL);
 	}
