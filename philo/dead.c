@@ -6,7 +6,7 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 17:21:34 by rababaya          #+#    #+#             */
-/*   Updated: 2025/08/21 16:43:35 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/08/21 18:07:10 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	dead_check(t_table *table)
 	{
 		current = get_time_in_ms();
 		pthread_mutex_lock(&(table->philos[i].last_eat));
-		if (current - table->philos[i].last_eat_time >= table->time_to_die)
+		if (current - table->philos[i].last_eat_time > table->time_to_die)
 		{
 			print(&(table->philos[i]), "died", table->start_time);
 			pthread_mutex_lock(&(table->dead));
@@ -78,6 +78,7 @@ void	*is_dead(void *data)
 		i = -1;
 		if (!dead_check(table))
 			return (NULL);
+		usleep(75);
 	}
 	return (NULL);
 }
