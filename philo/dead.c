@@ -6,7 +6,7 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 17:21:34 by rababaya          #+#    #+#             */
-/*   Updated: 2025/08/20 17:23:35 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/08/21 16:43:35 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 static int	dead_check(t_table *table)
 {
 	int			i;
-	long long	current;
+	long long	current = 0;
 
-	i = 0;
+	i = -1;
 	while (++i < table->n)
 	{
 		current = get_time_in_ms();
