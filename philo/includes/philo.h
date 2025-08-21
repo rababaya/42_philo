@@ -6,7 +6,7 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 15:31:15 by rababaya          #+#    #+#             */
-/*   Updated: 2025/08/20 17:23:22 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/08/21 15:01:33 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ typedef struct s_table	t_table;
 typedef struct s_philo
 {
 	int			id;
-	int			count_of_eat;
 	int			count_now;
 	long		time_to_die;
 	long		time_to_eat;

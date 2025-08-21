@@ -6,7 +6,7 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 15:07:08 by rababaya          #+#    #+#             */
-/*   Updated: 2025/08/20 16:43:00 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/08/21 14:58:43 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,9 @@ int	main(int argc, char **argv)
 	i = 0;
 	while (i < table.n)
 		pthread_join(table.philos[i++].thread, NULL);
+	pthread_join(table.dead_check, NULL);
 	pthread_mutex_destroy(&table.dead);
 	pthread_mutex_destroy(&table.print);
-	pthread_join(table.dead_check, NULL);
-	free(table.philos);
-	free(table.forks);
 	i = 0;
 	while (i < table.n)
 	{
@@ -38,5 +36,7 @@ int	main(int argc, char **argv)
 		pthread_mutex_destroy(&table.philos[i].count);
 		pthread_mutex_destroy(&table.forks[i++]);
 	}
+	free(table.philos);
+	free(table.forks);
 	return (0);
 }

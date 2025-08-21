@@ -6,7 +6,7 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 15:30:25 by rababaya          #+#    #+#             */
-/*   Updated: 2025/08/17 18:19:59 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/08/21 14:49:59 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ int	validation(int argcount, char **argvector, t_table *table)
 		return (0);
 	table->n = ft_atoi(argvector[1]);
 	table->time_to_die = ft_atoi(argvector[2]);
-	table->time_to_eat = ft_atoi(argvector[3]) * 1000;
-	table->time_to_sleep = ft_atoi(argvector[4]) * 1000;
+	table->time_to_eat = ft_atoi(argvector[3]);
+	table->time_to_sleep = ft_atoi(argvector[4]);
 	table->eat_count = 0;
 	if (argcount == 6)
 		table->eat_count = ft_atoi(argvector[5]);

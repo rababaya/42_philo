@@ -6,7 +6,7 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 14:06:04 by rababaya          #+#    #+#             */
-/*   Updated: 2025/08/20 17:21:49 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/08/21 15:09:13 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	philo_odd(t_philo *philo)
 	pthread_mutex_unlock(&(philo->last_eat));
 	ft_usleep(philo->time_to_eat, philo);
 	pthread_mutex_lock(&(philo->count));
-	if (philo->count_of_eat != 0)
+	if (philo->table->eat_count != 0)
 		philo->count_now++;
 	pthread_mutex_unlock(&(philo->count));
 	pthread_mutex_unlock(philo->left);
@@ -56,7 +56,7 @@ static int	philo_even(t_philo *philo)
 	pthread_mutex_unlock(&(philo->last_eat));
 	ft_usleep(philo->time_to_eat, philo);
 	pthread_mutex_lock(&(philo->count));
-	if (philo->count_of_eat != 0)
+	if (philo->table->eat_count != 0)
 		philo->count_now++;
 	pthread_mutex_unlock(&(philo->count));
 	pthread_mutex_unlock(philo->right);

@@ -6,7 +6,7 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 15:21:02 by rababaya          #+#    #+#             */
-/*   Updated: 2025/08/20 17:18:08 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/08/21 15:08:15 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ void	ft_usleep(long long time, t_philo *philo)
 			return ;
 		}
 		pthread_mutex_unlock(&philo->table->dead);
-		if (get_time_in_ms() - start >= time / 1000)
+		if (get_time_in_ms() - start >= time)
 			return ;
-		usleep(100);
+		usleep(10000);
 	}
 }
