@@ -6,7 +6,7 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 17:21:34 by rababaya          #+#    #+#             */
-/*   Updated: 2025/08/21 18:07:10 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/08/28 19:20:50 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ static int	check_count(t_table *table)
 
 void	*is_dead(void *data)
 {
-	int			i;
 	t_table		*table;
 
 	table = data;
@@ -75,10 +74,9 @@ void	*is_dead(void *data)
 			pthread_mutex_unlock(&(table->dead));
 			return (pthread_mutex_unlock(&(table->print)), NULL);
 		}
-		i = -1;
 		if (!dead_check(table))
 			return (NULL);
-		usleep(75);
+		usleep(500);
 	}
 	return (NULL);
 }

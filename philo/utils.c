@@ -6,7 +6,7 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 15:21:02 by rababaya          #+#    #+#             */
-/*   Updated: 2025/08/21 18:08:45 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/08/28 19:21:36 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,17 @@ void	ft_usleep(long long time, t_philo *philo)
 	start = get_time_in_ms();
 	while (1)
 	{
-		pthread_mutex_lock(&philo->table->dead);
-		if (philo->table->smbd_died == 1)
+		while (get_time_in_ms() < time + start)
 		{
+			pthread_mutex_lock(&philo->table->dead);
+			if (philo->table->smbd_died == 1)
+			{
+				pthread_mutex_unlock(&philo->table->dead);
+				return ;
+			}
 			pthread_mutex_unlock(&philo->table->dead);
-			return ;
+			usleep(500);
 		}
-		pthread_mutex_unlock(&philo->table->dead);
-		if (get_time_in_ms() - start >= time)
-			return ;
-		usleep(75);
+		return ;
 	}
 }

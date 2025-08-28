@@ -6,7 +6,7 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 15:07:08 by rababaya          #+#    #+#             */
-/*   Updated: 2025/08/21 16:15:09 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/08/28 19:11:56 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int argc, char **argv)
 	t_table	table;
 	int		i;
 
-	table.start_time = get_time_in_ms();
+	table.start_time = get_time_in_ms() + 500;
 	if (argc != 5 && argc != 6)
 		return (printf("wrong argument number\n"), 1);
 	if (!validation(argc, argv, &table))
